@@ -1,0 +1,57 @@
+---
+- name: Installing APT packages
+  apt: pkg={{ item }} state=latest update_cache=yes
+  with_items:
+    - git
+    - python-pip
+    - python2.7
+    - tmux
+    - vim
+    - zsh
+
+- name: Installing pip packages
+  pip: name={{ item }}
+  with_items:
+    - flake8
+    - pyflakes
+    - ropevim
+    - virtualenvwrapper
+
+- name: Downloading the Go tarball
+  get_url: url={{ go_url }}
+           dest=/usr/local/src/{{ go_tarball }}
+           sha256sum=go_sha256sum
+
+- name: Extracting the Go tarball
+  command: tar -C /usr/local -xf /usr/local/src/{{ go_tarball }}
+           creates=/usr/local/bin/go
+
+- name: Cloning configuration files from github
+  sudo: no
+  git: repo=https://github.com/agonzalezro/.dot.git
+       dest=~/.dot
+       update=yes
+
+- name: Cloning oh-my-zsh
+  sudo: no
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git
+       dest=~/.oh-my-zsh
+
+- name: Change vagrant shell to zsh
+  user: name=vagrant shell=/bin/zsh
+
+- name: Cloning needed vim fonts
+  sudo: no
+  git: repo=https://github.com/Lokaltog/powerline-fonts.git
+       dest=~/.fonts
+
+- name: Linking configurations
+  sudo: no
+  file: src=~/.dot/{{ item }} dest=~/.{{ item }} state=link
+  with_items:
+    - vimrc
+    - vim
+    - zshrc
+    - gitconfig
+    - tmux.conf
+    - pdbrc
