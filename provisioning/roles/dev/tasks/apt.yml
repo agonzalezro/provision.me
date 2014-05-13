@@ -1,0 +1,9 @@
+- name: Install APT packages
+  apt: pkg={{ item }} state=latest update_cache=yes
+  with_items:
+    - git
+    - python-pip
+    - python2.7
+    - tmux
+    - vim
+    - zsh

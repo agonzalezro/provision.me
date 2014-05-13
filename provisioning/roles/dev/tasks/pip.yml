@@ -1,0 +1,7 @@
+- name: Instal PIP packages
+  pip: name={{ item }}
+  with_items:
+    - flake8
+    - pyflakes
+    - ropevim
+    - virtualenvwrapper

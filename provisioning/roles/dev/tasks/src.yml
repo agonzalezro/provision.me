@@ -1,0 +1,8 @@
+- name: Download Go
+  get_url: url={{ go_url }}
+           dest=/usr/local/src/{{ go_tarball }}
+           sha256sum={{ go_sha256sum }}
+
+- name: Install Go
+  command: tar -C /usr/local -xf /usr/local/src/{{ go_tarball }}
+           creates=/usr/local/bin/go

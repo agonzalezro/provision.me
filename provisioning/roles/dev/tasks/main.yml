@@ -1,52 +1,33 @@
 ---
-- name: Installing APT packages
-  apt: pkg={{ item }} state=latest update_cache=yes
-  with_items:
-    - git
-    - python-pip
-    - python2.7
-    - tmux
-    - vim
-    - zsh
+- include: apt.yml
+  sudo: yes
+  tags:
+    - debian
+    - ubuntu
 
-- name: Installing pip packages
-  pip: name={{ item }}
-  with_items:
-    - flake8
-    - pyflakes
-    - ropevim
-    - virtualenvwrapper
+- include: pip.yml
+  sudo: yes
 
-- name: Downloading the Go tarball
-  get_url: url={{ go_url }}
-           dest=/usr/local/src/{{ go_tarball }}
-           sha256sum=go_sha256sum
+- include: src.yml
+  sudo: yes
 
-- name: Extracting the Go tarball
-  command: tar -C /usr/local -xf /usr/local/src/{{ go_tarball }}
-           creates=/usr/local/bin/go
+- include: user.yml
+  sudo: yes
 
-- name: Cloning configuration files from github
-  sudo: no
+- name: Clone .dot
   git: repo=https://github.com/agonzalezro/.dot.git
        dest=~/.dot
        update=yes
 
-- name: Cloning oh-my-zsh
-  sudo: no
+- name: Clone oh-my-zsh
   git: repo=https://github.com/robbyrussell/oh-my-zsh.git
        dest=~/.oh-my-zsh
 
-- name: Change vagrant shell to zsh
-  user: name=vagrant shell=/bin/zsh
-
-- name: Cloning needed vim fonts
-  sudo: no
+- name: Clone Powerline fonts
   git: repo=https://github.com/Lokaltog/powerline-fonts.git
        dest=~/.fonts
 
-- name: Linking configurations
-  sudo: no
+- name: Link configurations
   file: src=~/.dot/{{ item }} dest=~/.{{ item }} state=link
   with_items:
     - vimrc

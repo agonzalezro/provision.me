@@ -1,0 +1,5 @@
+- name: Change default shell for "vagrant" and/or "alex" user
+  user: name={{ item }} shell=/bin/zsh
+  with_items:
+      - vagrant
+      - alex
