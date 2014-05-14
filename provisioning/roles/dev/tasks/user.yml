@@ -1,5 +1,2 @@
-- name: Change default shell for "vagrant" and/or "alex" user
-  user: name={{ item }} shell=/bin/zsh
-  with_items:
-      - vagrant
-      - alex
+- name: Change default shell for "ansible_ssh_user" user
+  user: name={{ ansible_ssh_user }} shell=/bin/zsh
