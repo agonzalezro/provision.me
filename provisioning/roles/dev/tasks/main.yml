@@ -2,7 +2,7 @@
 - include: apt.yml
   sudo: yes
   when: ansible_os_family == 'Debian'
-  
+
 - include: pip.yml
   sudo: yes
 
@@ -34,3 +34,6 @@
     - gitconfig
     - tmux.conf
     - pdbrc
+
+- name: Vundle PluginInstall
+  command: vim +PluginInstall +qall
