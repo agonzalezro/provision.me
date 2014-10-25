@@ -1,2 +1,0 @@
-- name: Change default shell for "ansible_ssh_user" user
-  user: name={{ ansible_ssh_user }} shell=/bin/zsh

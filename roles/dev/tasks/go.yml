@@ -1,0 +1,25 @@
+- name: Clone goenv
+  git: repo=https://github.com/wfarr/goenv.git
+       dest=~/.goenv
+  register: goenv
+
+- file: path=~/.goenv/versions state=directory
+  when: goenv.changed
+
+- name: Download Go
+  get_url: url={{ go_url }}
+           dest=/tmp/go.tgz
+  when: goenv.changed
+
+- name: Install Go
+  unarchive: src=/tmp/go.tgz dest=~/.goenv/versions
+  when: goenv.changed
+
+- command: mv ~/.goenv/versions/go ~/.goenv/versions/{{ go_version }}
+  when: goenv.changed
+
+- command: ~/.goenv/bin/goenv global {{ go_version }}
+
+- name: Change permissions for goenv
+  command: "chown {{ user }}:{{ group }} ~/.goenv"
+  when: goenv.changed

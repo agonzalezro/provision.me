@@ -1,14 +1,14 @@
 provision.me
 ============
 
-Here I am going to store the default configuration of my Linux laptops and a
-configuration for a Vagrant machine for development that I can use in Mac too.
+This repo is the ansible playbook that I am using to bootstrap my Linux boxes.
 
-TODO
-----
+Quick start
+-----------
 
-- I do not know how to deploy without Vagrant.
-- Is it well structured?
-- Add arch packages.
-- Add desktop role.
-- irssi?
+1. Edit `user` & `group` vars on the `playbook.yml` file.
+2. Add the IP `127.0.0.1` to `/etc/ansible/hosts`.
+3. Run ansible: `ansible-playbook playbook.yml -c local`
+
+After that you will have few programs installed as vim, chrome, etc... and my
+dot configuration files applied.

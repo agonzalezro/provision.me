@@ -6,7 +6,7 @@
 - include: pip.yml
   sudo: yes
 
-- include: src.yml
+- include: go.yml
   sudo: yes
 
 - include: user.yml
@@ -37,3 +37,6 @@
 
 - name: Vundle PluginInstall
   command: vim +PluginInstall +qall
+
+- name: Change permissions
+  command: chown {{ user }}:{{ group }} -R ~/.dot ~/.fonts ~/.oh-my-zsh

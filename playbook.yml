@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: yes
+  roles:
+    - {role: dev, tags: dev}
+    - {role: desktop, tags: desktop}
+  vars:
+    - user: "alex"
+    - group: "alex"

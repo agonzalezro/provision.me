@@ -1,4 +1,0 @@
----
-go_sha256sum: "82f6bc5b933c0ccc48f5bbd4c329327f743824e38835847d085d5c9b75022290"
-go_tarball: "go1.2.2.linux-amd64.tar.gz"
-go_url: "https://storage.googleapis.com/golang/{{ go_tarball }}"

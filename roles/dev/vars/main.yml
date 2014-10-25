@@ -1,0 +1,3 @@
+---
+go_version: 1.3.3
+go_url: "https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz"
