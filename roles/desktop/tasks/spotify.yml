@@ -1,0 +1,16 @@
+---
+- name: Does the Spotify APT repo exists?
+  stat: path={{ spotify_apt_file }}
+  register: source_file
+
+- name: Add Spotify repo
+  copy: content="deb http://repository.spotify.com stable non-free"
+        dest={{ spotify_apt_file }}
+        owner=root group=root mode=644
+  when: source_file.stat.exists == false
+
+- shell: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
+  when: source_file.stat.exists == false
+
+- name: Install Spotify
+  apt: update_cache=yes pkg=spotify-client state=installed

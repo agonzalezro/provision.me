@@ -1,2 +1,3 @@
 ---
-apt_file: /etc/apt/sources.list.d/google-chrome.list
+chrome_apt_file: /etc/apt/sources.list.d/google-chrome.list
+spotify_apt_file: /etc/apt/sources.list.d/spotify.list
