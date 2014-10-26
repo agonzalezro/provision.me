@@ -3,6 +3,7 @@
   with_items:
     - ack-grep
     - curl
+    - docker.io
     - git
     - python-pip
     - python2.7
