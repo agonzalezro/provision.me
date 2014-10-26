@@ -1,14 +1,8 @@
 ---
 - include: chrome.yml tags=chrome
 - include: spotify.yml tags=spotify
+- include: gnome.yml tags=gnome
+- include: i3.yml tags=i3
 
-- name: Install Gnome & i3
-  apt: pkg={{ item }} state=latest update_cache=yes
-  with_items:
-    - gnome-shell
-    - i3
-
-- name: Link configurations
-  file: src=~/.dot/{{ item }} dest=~/.{{ item }} state=link
-  with_items:
-    - i3
+- name: Install restricted extras
+  apt: update_cache=yes package=ubuntu-restricted-extras state=present

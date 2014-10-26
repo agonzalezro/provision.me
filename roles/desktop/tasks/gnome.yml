@@ -1,0 +1,11 @@
+---
+- name: Add webupd8 PPA
+  apt_repository: repo='ppa:webupd8team/gnome3' state=present
+
+- name: Install packages
+  apt: update_cache=yes package={{ item }} state=present
+  with_items:
+    - dconf-tools
+    - gnome-shell
+    - gnome-shell-extension-autohidetopbar
+    - gnome-shell-extensions-gpaste

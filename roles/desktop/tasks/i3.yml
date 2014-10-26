@@ -1,0 +1,10 @@
+---
+- name: Install packages
+  apt: pkg={{ item }} state=latest update_cache=yes
+  with_items:
+    - i3
+
+- name: Link configurations
+  file: src=~/.dot/{{ item }} dest=~/.{{ item }} state=link
+  with_items:
+    - i3

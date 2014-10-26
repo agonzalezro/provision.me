@@ -5,6 +5,7 @@
     - curl
     - docker.io
     - git
+    - mercurial
     - python-pip
     - python2.7
     - tmux
