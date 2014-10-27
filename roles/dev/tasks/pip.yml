@@ -1,5 +1,5 @@
 - name: Instal PIP packages
-  pip: name={{ item }}
+  pip: name={{ item }} state=present
   with_items:
     - flake8
     - pyflakes

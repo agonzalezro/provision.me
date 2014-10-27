@@ -1,8 +1,11 @@
 ---
+- name: Install packages
+  apt: update_cache=yes package={{ item }} state=present
+  with_items:
+    - ubuntu-restricted-extras
+    - scrot
+
 - include: chrome.yml tags=chrome
 - include: spotify.yml tags=spotify
 - include: gnome.yml tags=gnome
 - include: i3.yml tags=i3
-
-- name: Install restricted extras
-  apt: update_cache=yes package=ubuntu-restricted-extras state=present
