@@ -32,6 +32,7 @@
     - vim
     - zshrc
     - gitconfig
+    - tmate.conf
     - tmux.conf
     - pdbrc
 
